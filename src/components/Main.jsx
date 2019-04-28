@@ -1,6 +1,6 @@
 import React from 'react';
-import Note from './Note'
-import YearlyDiaryList from './YearlyDiaryList'
+import Memo from './Memo'
+import Diary from './Diary'
 import MonthlyDiaryList from './MonthlyDiaryList'
 import DaylyDiaryList from './DaylyDiaryList'
 import ErrorPage from './ErrorPage'
@@ -8,13 +8,13 @@ import ErrorPage from './ErrorPage'
 class Main extends React.Component {
 
   render() {
-    const { NotePage, YearlyPage, MonthlyPage, DaylyPage } = this.props.pages
+    const { pages:{MemoPage, YearlyPage, MonthlyPage, DaylyPage}, memo, chats, handleMemo, handleSubmit } = this.props
     return (
-      <div className="main">
-      { NotePage ?
-          <Note />
+      <div className="main" style={{height: '80vh'}}>
+      { MemoPage ?
+          <Memo chats={chats} memo={memo} handleMemo={(e) => handleMemo(e)} handleSubmit={() => handleSubmit()} />
         : YearlyPage ?
-          <YearlyDiaryList />
+          <Diary chats={chats} memo={memo} handleMemo={(e) => handleMemo(e)} handleSubmit={() => handleSubmit()} />
         : MonthlyPage ?
           <MonthlyDiaryList />
         : DaylyPage ?
