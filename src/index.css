@@ -12,3 +12,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: #696969;
+}
+
+.active {
+  background-color: #696969;
+  color: white;
+}

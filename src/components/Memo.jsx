@@ -6,15 +6,15 @@ import InputForm from './InputForm'
 class Memo extends React.Component {
 
   render() {
-    const { memo, chats, handleMemo, handleSubmit } = this.props
+    const { memo, chats, handleInput, handleSubmit, handleDeleteMemo } = this.props
     return (
       <div className="memo">
         <div style={{height: '72vh'}}>
-          <ChatList chats={chats}/>
+          <ChatList chats={chats} handleDeleteMemo={(id) => handleDeleteMemo(id)} />
         </div>
         <InputForm
           memo={memo}
-          handleMemo={(e) => handleMemo(e)}
+          handleInput={(stateName, e) => handleInput(stateName, e)}
           handleSubmit={() => handleSubmit()}
         />
       </div>
