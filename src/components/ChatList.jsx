@@ -7,8 +7,6 @@ class ChatList extends React.Component {
     return (
       <div className="chat_list" style={{height: '100%', overflow: 'auto', padding: '0 30px'}}>
         {chats.map((_, i) => {
-          // const time = timestamp('HH：mm', chats[i].created_at)
-          // console.log(time);
           return (
             <Grid key={i} container spacing={0} style={{padding: 10}}>
               <Grid item xs={3}>

@@ -6,7 +6,7 @@ import InputForm from './InputForm'
 class Memo extends React.Component {
 
   render() {
-    const { memo, chats, handleInput, handleSubmit, handleDeleteMemo } = this.props
+    const { memo, chats, handleInput, handleSubmitMemo, handleDeleteMemo } = this.props
     return (
       <div className="memo">
         <div style={{height: '72vh'}}>
@@ -15,7 +15,7 @@ class Memo extends React.Component {
         <InputForm
           memo={memo}
           handleInput={(stateName, e) => handleInput(stateName, e)}
-          handleSubmit={() => handleSubmit()}
+          handleSubmitMemo={() => handleSubmitMemo()}
         />
       </div>
     );

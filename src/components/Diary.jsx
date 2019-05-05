@@ -12,7 +12,7 @@ class Diary extends React.Component {
         <Paper style={{height: '72vh', padding: 20}}>
           <textarea style={{height: '90%', width: '100%', fontSize: 20}} value={diaryForm} onChange={e => handleInput('diaryForm', e.target.value)} placeholder="日記を書く" />
           <div style={{height: '10%', width: '100%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
-            <Button variant="contained" style={{textAlign: 'right'}} onClick={() => window.confirm('日記を作成しますか？') && handleSubmitDiary()}>入力完了</Button>
+            <Button variant="contained" style={{textAlign: 'right'}} onClick={() => diaryForm && window.confirm('日記を作成しますか？') && handleSubmitDiary()}>入力完了</Button>
           </div>
         </Paper>
       </div>

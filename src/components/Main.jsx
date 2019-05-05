@@ -8,7 +8,7 @@ import ErrorPage from './ErrorPage'
 class Main extends React.Component {
 
   render() {
-    const { pages:{MemoPage, YearlyPage, MonthlyPage, DaylyPage}, memo, chats, handleInput, handleSubmit, changePages, diaryForm,
+    const { pages:{MemoPage, DiaryPage, ListPage, DiaryDetailPage}, memo, chats, handleInput, handleSubmitMemo, changePages, diaryForm,
               diaryList, handleSubmitDiary, handleDeleteMemo, diaryContent } = this.props
     return (
       <div className="main" style={{height: '80vh'}}>
@@ -17,25 +17,24 @@ class Main extends React.Component {
             chats={chats}
             memo={memo}
             handleInput={(stateName, e) => handleInput(stateName, e)}
-            handleSubmit={() => handleSubmit()}
+            handleSubmitMemo={() => handleSubmitMemo()}
             handleDeleteMemo={(id) => handleDeleteMemo(id)}
           />
-        : YearlyPage ?
+        : DiaryPage ?
           <Diary
             memo={memo}
             diaryForm={diaryForm}
             handleSubmitDiary={() => handleSubmitDiary()}
             handleInput={(stateName, e) => handleInput(stateName, e)}
-            handleSubmit={() => handleSubmit()}
           />
-        : MonthlyPage ?
+        : ListPage ?
           <DiaryList
             chats={chats}
             diaryList={diaryList}
             changePages={(name) => changePages(name)}
             handleInput={(stateName, e) => handleInput(stateName, e)}
           />
-        : DaylyPage ?
+        : DiaryDetailPage ?
           <DiaryDetail
             diaryContent={diaryContent}
           />
