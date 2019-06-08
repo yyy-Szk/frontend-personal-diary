@@ -4,6 +4,7 @@ import Main from './Main'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import ErrorPage from './ErrorPage'
+import Top from './Top'
 
 import axios from 'axios';
 import timestamp from 'time-stamp'
@@ -22,7 +23,8 @@ class Index extends React.Component {
     email: '',
     password: '',
     password_confirm: '',
-    login: false
+    login: false,
+    top: true
   }
 
   componentDidMount() {
@@ -33,30 +35,34 @@ class Index extends React.Component {
 
   signUp() {
     const { email, password, password_confirm } = this.state
-    password === password_confirm ?
-      axios.post(`${process.env.REACT_APP_API_URL}/v1/auth`,
-        { email: email, password: password }
-      )
-      .then(results => {
-        this.setState({email: '', password: '', password_confirm: ''})
-        alert('登録に成功しました。')
-      })
-    : alert('パスワードが一致しません。')
+    email && password && password_confirm ?
+      password === password_confirm ?
+        axios.post(`${process.env.REACT_APP_API_URL}/v1/auth`,
+          { email: email, password: password }
+        )
+        .then(results => {
+          this.setState({email: '', password: '', password_confirm: ''})
+          alert('登録に成功しました。')
+        })
+      : alert('パスワードが一致しません。')
+    : alert('メールアドレスとパスワードを入力してください')
   }
 
   login() {
-    const { email, password, password_confirm } = this.state
-    axios.post(`${process.env.REACT_APP_API_URL}/v1/auth/sign_in`,
-      { email: email, password: password, password_confirm: password_confirm }
-    )
-    .then(results => {
-      const { data: {data}, headers } = results
-      const user_data = { uid: headers.uid, "access-token": headers["access-token"], client: headers.client,
-                      id: data.id, email: data.email }
-      localStorage.setItem('user_data', JSON.stringify(user_data))
-      this.changePages('MemoPage')
-      this.getUserInfo(user_data)
-    })
+    const { email, password } = this.state
+    email && password ?
+      axios.post(`${process.env.REACT_APP_API_URL}/v1/auth/sign_in`,
+        { email: email, password: password }
+      )
+      .then(results => {
+        const { data: {data}, headers } = results
+        const user_data = { uid: headers.uid, "access-token": headers["access-token"], client: headers.client,
+                        id: data.id, email: data.email }
+        localStorage.setItem('user_data', JSON.stringify(user_data))
+        this.changePages('MemoPage')
+        this.getUserInfo(user_data)
+      })
+    : alert('メールアドレスとパスワードを入力してください')
   }
 
   logout() {
@@ -163,10 +169,9 @@ class Index extends React.Component {
   render() {
     console.log();
     const { pages, memo, chats, diaryForm, today, diaryList, diaryContent, email, password,
-          password_confirm, login } = this.state
+          password_confirm, login, top } = this.state
     return (
       <div className="index" style={{backgroundColor: '#F5F5F5'}}>
-        <div className={"header"} style={{height: '10vh', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24}}>{today}</div>
           { login ?
             <>
               <Main
@@ -181,6 +186,7 @@ class Index extends React.Component {
                 handleSubmitDiary={() => this.handleSubmitDiary()}
                 changePages={(name) => this.changePages(name)}
                 handleDeleteMemo={(id) => this.handleDeleteMemo(id)}
+                today={today}
               />
 
               <NavBar
@@ -189,6 +195,8 @@ class Index extends React.Component {
                 pages={pages}
               />
             </>
+          : top ?
+            <Top handleInput={(stateName, content) => this.handleInput(stateName, content)}/>
           : pages.LoginForm ?
             <LoginForm
               email={email}

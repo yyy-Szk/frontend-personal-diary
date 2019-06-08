@@ -6,8 +6,8 @@ class SignUpForm extends React.Component {
   render() {
     const { email, password, password_confirm, handleInput, signUp, changePages } = this.props
     return (
-      <div className="login-form" style={{backgroundColor: '#F5F5F5', height: '90vh'}}>
-        <h2>サインアップ</h2>
+      <div className="login-form" style={{backgroundColor: '#F5F5F5', height: '100vh'}}>
+        <h2 style={{margin: 0, paddingTop: 100}}>サインアップ</h2>
         <Grid container>
           <Grid item xs={12} style={{marginTop: 30}}>
             <TextField

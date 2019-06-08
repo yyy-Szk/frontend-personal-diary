@@ -4,7 +4,7 @@ import { Paper } from '@material-ui/core'
 class DiaryDetail extends React.Component {
 
   state = {
-    diary: 'teretereretereretereretereretereretereretererere'
+    diary: ''
   }
 
   render() {

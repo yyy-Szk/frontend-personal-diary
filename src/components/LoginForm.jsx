@@ -6,8 +6,8 @@ class LoginForm extends React.Component {
   render() {
     const { email, password, password_confirm, handleInput, login, changePages } = this.props
     return (
-      <div className="login-form" style={{backgroundColor: '#F5F5F5', height: '90vh'}}>
-        <h2>ログイン</h2>
+      <div className="login-form" style={{backgroundColor: '#F5F5F5', height: '100vh'}}>
+        <h2 style={{margin: 0, paddingTop: 100}}>ログイン</h2>
         <Grid container>
           <Grid item xs={12} style={{marginTop: 30}}>
             <TextField
@@ -25,16 +25,6 @@ class LoginForm extends React.Component {
               value={password}
               label="password"
               onChange={e => handleInput('password', e.target.value)}
-              autoFocus
-            />
-          </Grid>
-          <Grid item xs={12} style={{marginTop: 30}}>
-            <TextField
-              id="password_confirm"
-              type="password"
-              value={password_confirm}
-              label="password_confirm"
-              onChange={e => handleInput('password_confirm', e.target.value)}
               autoFocus
             />
           </Grid>
