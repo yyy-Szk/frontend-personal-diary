@@ -4,7 +4,7 @@ import { TextField, Grid, Button } from '@material-ui/core';
 class LoginForm extends React.Component {
 
   render() {
-    const { email, password, password_confirm, handleInput, login, changePages } = this.props
+    const { email, password, handleInput, login, changePages } = this.props
     return (
       <div className="login-form" style={{backgroundColor: '#F5F5F5', height: '100vh'}}>
         <h2 style={{margin: 0, paddingTop: 100}}>ログイン</h2>

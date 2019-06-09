@@ -205,7 +205,6 @@ class Index extends React.Component {
             <LoginForm
               email={email}
               password={password}
-              password_confirm={password_confirm}
               login={() => this.login()}
               handleInput={(stateName, e) => this.handleInput(stateName, e)}
               changePages={(name) => this.changePages(name)}
