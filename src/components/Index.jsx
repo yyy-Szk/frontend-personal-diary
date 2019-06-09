@@ -43,8 +43,10 @@ class Index extends React.Component {
         .then(results => {
           this.setState({email: '', password: '', password_confirm: ''})
           alert('登録に成功しました。')
+        }).catch(err => {
+          alert('エラーが発生しました。すでに登録済みのメールアドレスの可能性があります')
         })
-      : alert('パスワードが一致しません。')
+      : alert('パスワードが一致しません')
     : alert('メールアドレスとパスワードを入力してください')
   }
 
@@ -61,6 +63,8 @@ class Index extends React.Component {
         localStorage.setItem('user_data', JSON.stringify(user_data))
         this.changePages('MemoPage')
         this.getUserInfo(user_data)
+      }).catch(err => {
+        alert('IDまたはパスワードが間違っています')
       })
     : alert('メールアドレスとパスワードを入力してください')
   }
