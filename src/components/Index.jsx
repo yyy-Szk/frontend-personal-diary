@@ -133,6 +133,7 @@ class Index extends React.Component {
     this.setState({[stateName]: content})
   }
 
+// このへん共通化したほうがいいかも
   handleSubmitMemo() {
     const user_data = JSON.parse(localStorage.getItem('user_data'))
     axios.post(`${process.env.REACT_APP_API_URL}/v1/memos`,
@@ -171,7 +172,6 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log();
     const { pages, memo, chats, diaryForm, today, diaryList, diaryContent, email, password,
           password_confirm, login, top } = this.state
     return (
